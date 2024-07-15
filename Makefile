@@ -119,6 +119,8 @@ docker-b6-ci: docker/Dockerfile.b6-ci
 	docker build -t europe-docker.pkg.dev/diagonal-public/b6/b6-ci -f docker/Dockerfile.b6-ci .
 	docker push europe-docker.pkg.dev/diagonal-public/b6/b6-ci
 
+all-tests: test python-test
+
 clean:
 	cd src/diagonal.works/b6; go clean
 	rm -f src/diagonal.works/b6/proto/*.pb.go
