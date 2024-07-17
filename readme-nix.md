@@ -22,6 +22,7 @@ Binaries are then located at:
 ```shell
 ./result/bin/b6
 ./result/bin/b6-ingest-osm
+... # and so on for all the binaries
 ```
 
 ### Building the UI (v2)
@@ -60,7 +61,7 @@ cd /src/diagonal.works/b6/cmd/b6/js
 make
 ```
 
-## Compute an index
+## Compute an index (ingesting data)
 
 Follows the readme, just uses the Nix binary:
 
@@ -118,3 +119,6 @@ method.
   but `b6 -world ~/dev/diagonal/b6/data/camden.index` works fine.
 - You will need to re-run gomod2nix, I think, if new go dependencies are
   added? (to confirm)
+- Because `go` is also in the devShell, you can build the project there as
+  well (note: actually, you can't, because of this `VERSION` problem above, at
+  the moment.)
