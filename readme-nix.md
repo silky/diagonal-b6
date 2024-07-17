@@ -2,9 +2,11 @@
 
 Overall, the project builds well with Nix; the main issue is that a couple of
 the Makefile targets don't work at present:
-
 - [ ] The `version` calculation seems to not work on a branch (?? to confirm)
 - [ ] An `npm install -g pnpm` fails on NixOS
+
+Note that all commands below assume they are executed from the root directory
+of the repo.
 
 ## Building the code
 
