@@ -2,6 +2,7 @@
 
 Overall, the project builds well with Nix; the main issue is that a couple of
 the Makefile targets don't work at present:
+
 - [ ] The `version` calculation seems to not work on a branch (?? to confirm)
 - [ ] An `npm install -g pnpm` fails on NixOS
 
@@ -115,3 +116,5 @@ method.
 - If you use the `=` style, the CLI doesn't allow for shell-based path
   expansion; so i.e. `b6 -world=~/dev/diagonal/b6/data/camden.index` would fail,
   but `b6 -world ~/dev/diagonal/b6/data/camden.index` works fine.
+- You will need to re-run gomod2nix, I think, if new go dependencies are
+  added? (to confirm)
