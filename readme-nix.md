@@ -122,3 +122,8 @@ method.
 - Because `go` is also in the devShell, you can build the project there as
   well (note: actually, you can't, because of this `VERSION` problem above, at
   the moment.)
+
+### Todo
+
+- [ ] The tests fail, so the flake has `doCheck = false`. I haven't worked out
+  how to run the tests outside of that, yet.
