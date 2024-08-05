@@ -111,6 +111,10 @@ in `~/tmp/osm` and the `.poly` file.
 This then gives a `.osm.pbf` file that can be ingested using the earlier
 method.
 
+For more, see also the
+[download-osm](https://github.com/openmaptiles/openmaptiles-tools#multi-streamed-osm-data-downloader)
+tool docs directly.
+
 
 ### Trivia
 
