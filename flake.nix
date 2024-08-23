@@ -55,9 +55,15 @@
         projectRoot = ./python;
       };
 
-      pythonEnv = python.withPackages (pythonProject.renderers.withPackages {
-        inherit python;
-      });
+      pythonEnv = python.withPackages (ps:
+          pythonProject.renderers.withPackages {
+            inherit python;
+          } ps ++
+          [
+            # For `make python`
+            ps.grpcio-tools
+          ]
+      );
 
       b6-py = python.pkgs.buildPythonPackage
         (pythonProject.renderers.buildPythonPackage {
