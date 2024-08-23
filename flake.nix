@@ -100,10 +100,16 @@
       # Development shells for hacking
       devShells.default = pkgs.mkShell {
         packages = with pkgs; [
+          # Running the Makefile tasks
+          protobuf
+          protoc-gen-go
+          protoc-gen-go-grpc
+          pkg-config
+
           # Python hacking
           pythonEnv
 
-          # Go backing
+          # Go hacking
           go_1_21
           gotools
           gomod2nix.packages.${system}.default # gomod2nix CLI
