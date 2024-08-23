@@ -131,3 +131,12 @@ tool docs directly.
 
 - [ ] The tests fail, so the flake has `doCheck = false`. I haven't worked out
   how to run the tests outside of that, yet.
+
+
+
+### Random things to investigate
+
+- We could use a `not` query (like `or`) for filtering
+- It's a bit weird to use `.all()`; does that have a performance impact?
+- Get the tests running
+- Build the Makefile items as a nix derivation?
