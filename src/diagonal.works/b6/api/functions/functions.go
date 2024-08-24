@@ -42,7 +42,8 @@ var functions = api.FunctionSymbols{
 	"histogram-swatch":         histogramSwatch,
 	"histogram-swatch-with-id": histogramSwatchWithID,
 	"join-missing":             joinMissing,
-	"list-feature":             listFeature,
+  "list-feature":             listFeature,
+  "drop-invalid":             dropInvalid,
 	// search
 	"find-feature":     findFeature,
 	"find-area":        findAreaFeature,

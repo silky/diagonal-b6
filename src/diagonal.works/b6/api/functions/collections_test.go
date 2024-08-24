@@ -257,6 +257,91 @@ func TestCountValidKeys(t *testing.T) {
 	}
 }
 
+func TestDropInvalid(t *testing.T) {
+	keys := []b6.FeatureID{
+		{Type: b6.FeatureTypeArea, Namespace: "diagonal.works/test", Value: 0},
+		{Type: b6.FeatureTypeArea, Namespace: "diagonal.works/test", Value: 1},
+		{Type: b6.FeatureTypeArea, Namespace: "diagonal.works/test", Value: 2},
+	}
+
+	values := []b6.FeatureID{
+		{Type: b6.FeatureTypeArea, Namespace: "diagonal.works/test", Value: 0},
+		b6.FeatureIDInvalid,
+		b6.FeatureIDInvalid,
+	}
+
+	collection := b6.ArrayCollection[b6.FeatureID, b6.FeatureID]{
+		Keys:   keys,
+		Values: values,
+	}
+
+	w := ingest.NewBasicMutableWorld()
+	c := collection.Collection()
+
+  ctx := &api.Context{World: w}
+	r, err := dropInvalid(ctx, c)
+
+	if err != nil {
+		t.Fatalf("Expected no error, found %s", err)
+	}
+
+  n, _ := r.Count()
+
+  if n != 1 {
+    t.Fatalf("Bad, n: %d", n)
+  }
+}
+
+// TODO: I can't really say for sure what this function does.
+func TestFilterAccessible(t *testing.T) {
+	keys := []b6.FeatureID{
+		{Type: b6.FeatureTypeArea, Namespace: "diagonal.works/test", Value: 0},
+		{Type: b6.FeatureTypeArea, Namespace: "diagonal.works/test", Value: 1},
+		{Type: b6.FeatureTypeArea, Namespace: "diagonal.works/test", Value: 2},
+		{Type: b6.FeatureTypeArea, Namespace: "diagonal.works/test", Value: 3},
+		{Type: b6.FeatureTypeArea, Namespace: "diagonal.works/test", Value: 4},
+		{Type: b6.FeatureTypeArea, Namespace: "diagonal.works/test", Value: 5},
+		{Type: b6.FeatureTypeArea, Namespace: "diagonal.works/test", Value: 6},
+		{Type: b6.FeatureTypeArea, Namespace: "diagonal.works/test", Value: 7},
+	}
+
+	values := []b6.FeatureID{
+		{Type: b6.FeatureTypeArea, Namespace: "diagonal.works/test", Value: 0},
+		{Type: b6.FeatureTypeArea, Namespace: "diagonal.works/test", Value: 1},
+		b6.FeatureIDInvalid,
+		b6.FeatureIDInvalid,
+		b6.FeatureIDInvalid,
+		b6.FeatureIDInvalid,
+		b6.FeatureIDInvalid,
+		b6.FeatureIDInvalid,
+	}
+
+	collection := b6.ArrayCollection[b6.FeatureID, b6.FeatureID]{
+		Keys:   keys,
+		Values: values,
+	}
+
+	w := ingest.NewBasicMutableWorld()
+	c := collection.Collection()
+
+  // Note: The type here doesn't matter; it's always the same error.
+  q := b6.Typed{Type: b6.FeatureTypeArea}
+
+  ctx := &api.Context{World: w}
+	r, err := filterAccessible(ctx, c, q)
+
+	if err != nil {
+		t.Fatalf("Expected no error, found %s", err)
+	}
+
+  n, _ := r.Count()
+
+  // TODO: This is a moderately surprising result.
+  if n != 7 {
+    t.Fatalf("Bad, n: %d", n)
+  }
+}
+
 func TestFlatten(t *testing.T) {
 	c1 := b6.ArrayCollection[string, string]{
 		Keys:   []string{"ka", "kb", "kc"},

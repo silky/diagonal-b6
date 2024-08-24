@@ -50,6 +50,7 @@ var functionDocs = map[string]Doc{
 	"distance-to-point-meters": Doc{Doc: "Return the distance in meters between the given path, and the project of the give point onto it.\n", ArgNames: []string{"path","point"}},
 	"divide": Doc{Doc: "Return a divided by b.\n", ArgNames: []string{"a","b"}},
 	"divide-int": Doc{Doc: "Deprecated.\n", ArgNames: []string{"a","b"}},
+	"drop-invalid": Doc{Doc: "", ArgNames: []string{"collection"}},
 	"entrance-approach": Doc{Doc: "", ArgNames: []string{"area"}},
 	"evaluate-feature": Doc{Doc: "", ArgNames: []string{"id"}},
 	"export-world": Doc{Doc: "Write the current world to the given filename in the b6 compact index format.\nAs the file is written by the b6 server process, the filename it relative\nto the filesystems it sees. Writing files to cloud storage is\nsupported.\n", ArgNames: []string{"filename"}},
