@@ -351,6 +351,23 @@ func countKeys(_ *api.Context, collection b6.Collection[any, any]) (b6.Collectio
 	return r.Collection(), nil
 }
 
+// Return a collection with all the entries that contain an InvalidFeatureID as the value dropped.
+func dropInvalid(context *api.Context, collection b6.Collection[b6.FeatureID, b6.FeatureID]) (b6.Collection[b6.FeatureID, b6.FeatureID], error) {
+	filtered := b6.ArrayCollection[b6.FeatureID, b6.FeatureID]{}
+	i := collection.Begin()
+	for {
+		ok, err := i.Next()
+		if err != nil || !ok {
+			return filtered.Collection(), err
+		}
+
+    if i.Value().IsValid() {
+      filtered.Keys = append(filtered.Keys, i.Key())
+      filtered.Values = append(filtered.Values, i.Value())
+    }
+  }
+}
+
 // Return a collection of the number of occurances of each valid value in the given collection.
 // Invalid values are not counted, but case the key to appear in the output.
 func countValidKeys(_ *api.Context, collection b6.Collection[any, any]) (b6.Collection[any, int], error) {

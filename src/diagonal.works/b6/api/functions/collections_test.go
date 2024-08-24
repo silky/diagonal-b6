@@ -377,3 +377,34 @@ func TestJoinMissing(t *testing.T) {
 		t.Errorf("Found diff (-want, +got):\n%s", diff)
 	}
 }
+
+func TestDropInvalid(t *testing.T) {
+	keys := []b6.FeatureID{
+		{Type: b6.FeatureTypeArea, Namespace: "diagonal.works/test", Value: 0},
+		{Type: b6.FeatureTypeArea, Namespace: "diagonal.works/test", Value: 1},
+		{Type: b6.FeatureTypeArea, Namespace: "diagonal.works/test", Value: 2},
+	}
+
+	values := []b6.FeatureID{
+		{Type: b6.FeatureTypeArea, Namespace: "diagonal.works/test", Value: 0},
+		b6.FeatureIDInvalid,
+		b6.FeatureIDInvalid,
+	}
+
+	collection := b6.ArrayCollection[b6.FeatureID, b6.FeatureID]{
+		Keys:   keys,
+		Values: values,
+	}
+
+	r, err := dropInvalid(&api.Context{}, collection.Collection())
+
+	if err != nil {
+		t.Fatalf("Expected no error, found %s", err)
+	}
+
+  n, _ := r.Count()
+
+  if n != 1 {
+    t.Fatalf("Drop invalid didn't returned expected list, n: %d", n)
+  }
+}
