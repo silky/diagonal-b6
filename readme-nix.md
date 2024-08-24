@@ -136,7 +136,15 @@ tool docs directly.
 
 ### Random things to investigate
 
-- We could use a `not` query (like `or`) for filtering
-- It's a bit weird to use `.all()`; does that have a performance impact?
-- Get the tests running
-- Build the Makefile items as a nix derivation?
+- [ ] We could use a `not` query (like `or`) for filtering
+- [ ] It's a bit weird to use `.all()`; does that have a performance impact?
+- [ ] Build the Makefile items as a nix derivation?
+- [ ] Document go <-> Python api (with types!) somewhere
+- [x] Get the tests running
+- [ ] Add some tests to highlight bad functionality
+      - Not being able to filter invalid
+        ```
+        b6.filter_accessible(q, b6.all())
+        ```
+        resulting in less things.
+- [x] Add a `drop_invalid` command to drop based on feature-id invalid

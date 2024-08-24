@@ -62,6 +62,7 @@
           [
             # For `make python`
             ps.grpcio-tools
+            ps.jupyter
           ]
       );
 
@@ -104,7 +105,7 @@
           protobuf
           protoc-gen-go
           protoc-gen-go-grpc
-          pkg-config
+          pkg-config gdal
 
           # Python hacking
           pythonEnv
