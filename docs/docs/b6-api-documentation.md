@@ -13,7 +13,7 @@ sidebar_position: 1
   type to expect to construct on the python side.
   
 
-### *b6.accessible_all* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: FeatureIDFeatureIDCollection</span>
+### *b6.accessible_all* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Collection[FeatureID,FeatureID]</span>
 
 Return the a collection of the features reachable from the given origins, within the given duration in seconds, that match the given query.
 Keys of the collection are origins, values are reachable destinations.
@@ -38,15 +38,15 @@ mode=walk, flip=yes
 
 #### Arguments
 
-- `origins` of type `AnyIdentifiableCollection`
+- `origins` of type `Collection[Any,Identifiable]`
 - `destinations` of type [`Query`](#query)
 - `duration` of type `float64`
-- `options` of type `AnyAnyCollection`
+- `options` of type `Collection[Any,Any]`
 
 #### Returns
-`FeatureIDFeatureIDCollection`
+`Collection[FeatureID,FeatureID]`
 
-### *b6.accessible_routes* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: FeatureIDRouteCollection</span>
+### *b6.accessible_routes* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Collection[FeatureID,Route]</span>
 
 
 #### Arguments
@@ -54,10 +54,10 @@ mode=walk, flip=yes
 - `origin` of type [`Identifiable`](#identifiable)
 - `destinations` of type [`Query`](#query)
 - `duration` of type `float64`
-- `options` of type `AnyAnyCollection`
+- `options` of type `Collection[Any,Any]`
 
 #### Returns
-`FeatureIDRouteCollection`
+`Collection[FeatureID,Route]`
 
 ### *b6.add* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Number</span>
 
@@ -78,8 +78,8 @@ Add a collection feature with the given id, tags and items.
 #### Arguments
 
 - `id` of type [`CollectionID`](#collectionid)
-- `tags` of type `AnyTagCollection`
-- `collection` of type `AnyAnyCollection`
+- `tags` of type `Collection[Any,Tag]`
+- `collection` of type `Collection[Any,Any]`
 
 #### Returns
 [`Change`](#change)
@@ -91,7 +91,7 @@ Add an expression feature with the given id, tags and expression.
 #### Arguments
 
 - `id` of type [`FeatureID`](#featureid)
-- `tags` of type `AnyTagCollection`
+- `tags` of type `Collection[Any,Tag]`
 - `expresson` of type [`Expression`](#expression)
 
 #### Returns
@@ -117,7 +117,7 @@ Adds a point feature with the given id, tags and members.
 
 - `point` of type [`Geometry`](#geometry)
 - `id` of type [`FeatureID`](#featureid)
-- `tags` of type `AnyTagCollection`
+- `tags` of type `Collection[Any,Tag]`
 
 #### Returns
 [`Change`](#change)
@@ -129,8 +129,8 @@ Add a relation feature with the given id, tags and members.
 #### Arguments
 
 - `id` of type [`RelationID`](#relationid)
-- `tags` of type `AnyTagCollection`
-- `members` of type `IdentifiableStringCollection`
+- `tags` of type `Collection[Any,Tag]`
+- `members` of type `Collection[Identifiable,String]`
 
 #### Returns
 [`Change`](#change)
@@ -155,12 +155,12 @@ values provide the tag to be added.
 
 #### Arguments
 
-- `collection` of type `FeatureIDTagCollection`
+- `collection` of type `Collection[FeatureID,Tag]`
 
 #### Returns
 [`Change`](#change)
 
-### *b6.add_world_with_change* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: FeatureIDFeatureIDCollection</span>
+### *b6.add_world_with_change* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Collection[FeatureID,FeatureID]</span>
 
 
 #### Arguments
@@ -169,7 +169,7 @@ values provide the tag to be added.
 - `change` of type [`Change`](#change)
 
 #### Returns
-`FeatureIDFeatureIDCollection`
+`Collection[FeatureID,FeatureID]`
 
 ### *b6.all* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Query</span>
 
@@ -181,7 +181,7 @@ Return a query that will match any feature.
 #### Returns
 [`Query`](#query)
 
-### *b6.all_tags* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: IntTagCollection</span>
+### *b6.all_tags* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Collection[Int,Tag]</span>
 
 Return a collection of all the tags on the given feature.
 Keys are ordered integers from 0, values are tags.
@@ -191,7 +191,7 @@ Keys are ordered integers from 0, values are tags.
 - `id` of type [`Identifiable`](#identifiable)
 
 #### Returns
-`IntTagCollection`
+`Collection[Int,Tag]`
 
 ### *b6.and* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Query</span>
 
@@ -249,18 +249,18 @@ Return the area of the given polygon in m².
 #### Returns
 `float64`
 
-### *b6.building_access* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: FeatureIDFeatureIDCollection</span>
+### *b6.building_access* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Collection[FeatureID,FeatureID]</span>
 
 Deprecated. Use accessible.
 
 #### Arguments
 
-- `origins` of type `AnyFeatureCollection`
+- `origins` of type `Collection[Any,Feature]`
 - `limit` of type `float64`
 - `mode` of type `string`
 
 #### Returns
-`FeatureIDFeatureIDCollection`
+`Collection[FeatureID,FeatureID]`
 
 ### *b6.call* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Any</span>
 
@@ -349,7 +349,7 @@ See accessible-all for options values.
 #### Arguments
 
 - `origin` of type [`Feature`](#feature)
-- `options` of type `AnyAnyCollection`
+- `options` of type `Collection[Any,Any]`
 - `distance` of type `float64`
 - `query` of type [`Query`](#query)
 
@@ -364,7 +364,7 @@ See accessible-all for options values.
 #### Arguments
 
 - `origin` of type [`Feature`](#feature)
-- `options` of type `AnyAnyCollection`
+- `options` of type `Collection[Any,Any]`
 - `distance` of type `float64`
 - `query` of type [`Query`](#query)
 
@@ -380,12 +380,12 @@ functions.
 
 #### Arguments
 
-- `areas` of type `AnyAreaCollection`
+- `areas` of type `Collection[Any,Area]`
 
 #### Returns
 [`Area`](#area)
 
-### *b6.collection* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: AnyAnyCollection</span>
+### *b6.collection* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Collection[Any,Any]</span>
 
 Return a collection of the given key value pairs.
 
@@ -394,7 +394,7 @@ Return a collection of the given key value pairs.
 - `pairs` of type [`Any`](#any)
 
 #### Returns
-`AnyAnyCollection`
+`Collection[Any,Any]`
 #### Misc
  - [x] Function is _variadic_ (has a variable number of arguments.)
 
@@ -434,21 +434,21 @@ network is only computed once.
 
 #### Arguments
 
-- `features` of type `AnyFeatureIDCollection`
+- `features` of type `Collection[Any,FeatureID]`
 
 #### Returns
 [`Change`](#change)
 
-### *b6.containing_areas* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: FeatureIDAreaFeatureCollection</span>
+### *b6.containing_areas* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Collection[FeatureID,AreaFeature]</span>
 
 
 #### Arguments
 
-- `points` of type `AnyFeatureCollection`
+- `points` of type `Collection[Any,Feature]`
 - `q` of type [`Query`](#query)
 
 #### Returns
-`FeatureIDAreaFeatureCollection`
+`Collection[FeatureID,AreaFeature]`
 
 ### *b6.convex_hull* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Area</span>
 
@@ -456,7 +456,7 @@ Return the convex hull of the given geometries.
 
 #### Arguments
 
-- `c` of type `AnyGeometryCollection`
+- `c` of type `Collection[Any,Geometry]`
 
 #### Returns
 [`Area`](#area)
@@ -469,23 +469,23 @@ the collection efficiently.
 
 #### Arguments
 
-- `collection` of type `AnyAnyCollection`
+- `collection` of type `Collection[Any,Any]`
 
 #### Returns
 `int`
 
-### *b6.count_keys* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: AnyIntCollection</span>
+### *b6.count_keys* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Collection[Any,Int]</span>
 
 Return a collection of the number of occurances of each value in the given collection.
 
 #### Arguments
 
-- `collection` of type `AnyAnyCollection`
+- `collection` of type `Collection[Any,Any]`
 
 #### Returns
-`AnyIntCollection`
+`Collection[Any,Int]`
 
-### *b6.count_tag_value* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: AnyIntCollection</span>
+### *b6.count_tag_value* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Collection[Any,Int]</span>
 
 Deprecated.
 
@@ -495,7 +495,7 @@ Deprecated.
 - `key` of type `string`
 
 #### Returns
-`AnyIntCollection`
+`Collection[Any,Int]`
 
 ### *b6.count_valid_ids* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: int</span>
 
@@ -503,33 +503,33 @@ Return the number of valid feature IDs in the given collection.
 
 #### Arguments
 
-- `collection` of type `AnyIdentifiableCollection`
+- `collection` of type `Collection[Any,Identifiable]`
 
 #### Returns
 `int`
 
-### *b6.count_valid_keys* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: AnyIntCollection</span>
+### *b6.count_valid_keys* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Collection[Any,Int]</span>
 
 Return a collection of the number of occurances of each valid value in the given collection.
 Invalid values are not counted, but case the key to appear in the output.
 
 #### Arguments
 
-- `collection` of type `AnyAnyCollection`
+- `collection` of type `Collection[Any,Any]`
 
 #### Returns
-`AnyIntCollection`
+`Collection[Any,Int]`
 
-### *b6.count_values* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: AnyIntCollection</span>
+### *b6.count_values* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Collection[Any,Int]</span>
 
 Return a collection of the number of occurances of each value in the given collection.
 
 #### Arguments
 
-- `collection` of type `AnyAnyCollection`
+- `collection` of type `Collection[Any,Any]`
 
 #### Returns
-`AnyIntCollection`
+`Collection[Any,Int]`
 
 ### *b6.debug_all_query* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Query</span>
 
@@ -542,7 +542,7 @@ Deprecated.
 #### Returns
 [`Query`](#query)
 
-### *b6.debug_tokens* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: IntStringCollection</span>
+### *b6.debug_tokens* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Collection[Int,String]</span>
 
 Return the search index tokens generated for the given feature.
 Intended for debugging use only.
@@ -552,7 +552,7 @@ Intended for debugging use only.
 - `id` of type [`Identifiable`](#identifiable)
 
 #### Returns
-`IntStringCollection`
+`Collection[Int,String]`
 
 ### *b6.degree* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: int</span>
 
@@ -649,19 +649,19 @@ supported.
 #### Returns
 `int`
 
-### *b6.filter* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: AnyAnyCollection</span>
+### *b6.filter* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Collection[Any,Any]</span>
 
 Return a collection of the items of the given collection for which the value of the given function applied to each value is true.
 
 #### Arguments
 
-- `collection` of type `AnyAnyCollection`
+- `collection` of type `Collection[Any,Any]`
 - `function` of type [`Callable`](#callable)
 
 #### Returns
-`AnyAnyCollection`
+`Collection[Any,Any]`
 
-### *b6.filter_accessible* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: FeatureIDFeatureIDCollection</span>
+### *b6.filter_accessible* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Collection[FeatureID,FeatureID]</span>
 
 Return a collection containing only the values of the given collection that match the given query.
 If no values for a key match the query, emit a single invalid feature ID
@@ -671,13 +671,13 @@ Keys are taken from the given collection.
 
 #### Arguments
 
-- `collection` of type `FeatureIDFeatureIDCollection`
+- `collection` of type `Collection[FeatureID,FeatureID]`
 - `filter` of type [`Query`](#query)
 
 #### Returns
-`FeatureIDFeatureIDCollection`
+`Collection[FeatureID,FeatureID]`
 
-### *b6.find* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: FeatureIDFeatureCollection</span>
+### *b6.find* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Collection[FeatureID,Feature]</span>
 
 Return a collection of the features present in the world that match the given query.
 Keys are IDs, and values are features.
@@ -687,7 +687,7 @@ Keys are IDs, and values are features.
 - `query` of type [`Query`](#query)
 
 #### Returns
-`FeatureIDFeatureCollection`
+`Collection[FeatureID,Feature]`
 
 ### *b6.find_area* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: AreaFeature</span>
 
@@ -700,7 +700,7 @@ Return the area feature with the given ID.
 #### Returns
 [`AreaFeature`](#areafeature)
 
-### *b6.find_areas* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: FeatureIDAreaFeatureCollection</span>
+### *b6.find_areas* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Collection[FeatureID,AreaFeature]</span>
 
 Return a collection of the area features present in the world that match the given query.
 Keys are IDs, and values are features.
@@ -710,7 +710,7 @@ Keys are IDs, and values are features.
 - `query` of type [`Query`](#query)
 
 #### Returns
-`FeatureIDAreaFeatureCollection`
+`Collection[FeatureID,AreaFeature]`
 
 ### *b6.find_collection* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: CollectionFeature</span>
 
@@ -745,7 +745,7 @@ Return the relation feature with the given ID.
 #### Returns
 [`RelationFeature`](#relationfeature)
 
-### *b6.find_relations* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: FeatureIDRelationFeatureCollection</span>
+### *b6.find_relations* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Collection[FeatureID,RelationFeature]</span>
 
 Return a collection of the relation features present in the world that match the given query.
 Keys are IDs, and values are features.
@@ -755,7 +755,7 @@ Keys are IDs, and values are features.
 - `query` of type [`Query`](#query)
 
 #### Returns
-`FeatureIDRelationFeatureCollection`
+`Collection[FeatureID,RelationFeature]`
 
 ### *b6.first* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Any</span>
 
@@ -768,16 +768,16 @@ Return the first value of the given pair.
 #### Returns
 [`Any`](#any)
 
-### *b6.flatten* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: AnyAnyCollection</span>
+### *b6.flatten* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Collection[Any,Any]</span>
 
 Return a collection with keys and values taken from the collections that form the values of the given collection.
 
 #### Arguments
 
-- `collection` of type `AnyAnyAnyCollectionCollection`
+- `collection` of type `Collection[Any,Collection[Any,Any]]`
 
 #### Returns
-`AnyAnyCollection`
+`Collection[Any,Any]`
 
 ### *b6.float_value* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: float64</span>
 
@@ -791,7 +791,7 @@ Propagates error if the value isn't a valid float.
 #### Returns
 `float64`
 
-### *b6.geojson_areas* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: IntAreaCollection</span>
+### *b6.geojson_areas* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Collection[Int,Area]</span>
 
 Return the areas present in the given geojson.
 
@@ -800,7 +800,7 @@ Return the areas present in the given geojson.
 - `g` of type [`GeoJSON`](#geojson)
 
 #### Returns
-`IntAreaCollection`
+`Collection[Int,Area]`
 
 ### *b6.get* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Tag</span>
 
@@ -872,7 +872,7 @@ Return a change that adds a histogram for the given collection.
 
 #### Arguments
 
-- `collection` of type `AnyAnyCollection`
+- `collection` of type `Collection[Any,Any]`
 
 #### Returns
 [`Change`](#change)
@@ -883,7 +883,7 @@ Return a change that adds a histogram with only colour swatches for the given co
 
 #### Arguments
 
-- `collection` of type `AnyAnyCollection`
+- `collection` of type `Collection[Any,Any]`
 
 #### Returns
 [`Change`](#change)
@@ -894,7 +894,7 @@ Return a change that adds a histogram with only colour swatches for the given co
 
 #### Arguments
 
-- `collection` of type `AnyAnyCollection`
+- `collection` of type `Collection[Any,Any]`
 - `id` of type [`CollectionID`](#collectionid)
 
 #### Returns
@@ -906,7 +906,7 @@ Return a change that adds a histogram for the given collection with the given ID
 
 #### Arguments
 
-- `collection` of type `AnyAnyCollection`
+- `collection` of type `Collection[Any,Any]`
 - `id` of type [`CollectionID`](#collectionid)
 
 #### Returns
@@ -1014,16 +1014,16 @@ Return a path formed from the points of the two given paths, in the order they o
 #### Returns
 [`Geometry`](#geometry)
 
-### *b6.join_missing* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: AnyAnyCollection</span>
+### *b6.join_missing* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Collection[Any,Any]</span>
 
 
 #### Arguments
 
-- `base` of type `AnyAnyCollection`
-- `joined` of type `AnyAnyCollection`
+- `base` of type `Collection[Any,Any]`
+- `joined` of type `Collection[Any,Any]`
 
 #### Returns
-`AnyAnyCollection`
+`Collection[Any,Any]`
 
 ### *b6.keyed* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Query</span>
 
@@ -1047,7 +1047,7 @@ Return the length of the given path in meters.
 #### Returns
 `float64`
 
-### *b6.list_feature* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: AnyAnyCollection</span>
+### *b6.list_feature* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Collection[Any,Any]</span>
 
 
 #### Arguments
@@ -1055,7 +1055,7 @@ Return the length of the given path in meters.
 - `id` of type [`CollectionID`](#collectionid)
 
 #### Returns
-`AnyAnyCollection`
+`Collection[Any,Any]`
 
 ### *b6.ll* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Geometry</span>
 
@@ -1069,18 +1069,18 @@ Return a point at the given latitude and longitude, specified in degrees.
 #### Returns
 [`Geometry`](#geometry)
 
-### *b6.map* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: AnyAnyCollection</span>
+### *b6.map* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Collection[Any,Any]</span>
 
 Return a collection with the result of applying the given function to each value.
 Keys are unmodified.
 
 #### Arguments
 
-- `collection` of type `AnyAnyCollection`
+- `collection` of type `Collection[Any,Any]`
 - `function` of type [`Callable`](#callable)
 
 #### Returns
-`AnyAnyCollection`
+`Collection[Any,Any]`
 
 ### *b6.map_geometries* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: GeoJSON</span>
 
@@ -1094,20 +1094,20 @@ Return a geojson representing the result of applying the given function to each 
 #### Returns
 [`GeoJSON`](#geojson)
 
-### *b6.map_items* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: AnyAnyCollection</span>
+### *b6.map_items* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Collection[Any,Any]</span>
 
 Return a collection of the result of applying the given function to each pair(key, value).
 Keys are unmodified.
 
 #### Arguments
 
-- `collection` of type `AnyAnyCollection`
+- `collection` of type `Collection[Any,Any]`
 - `function` of type [`Callable`](#callable)
 
 #### Returns
-`AnyAnyCollection`
+`Collection[Any,Any]`
 
-### *b6.map_parallel* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: AnyAnyCollection</span>
+### *b6.map_parallel* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Collection[Any,Any]</span>
 
 Return a collection with the result of applying the given function to each value.
 Keys are unmodified, and function application occurs in parallel, bounded
@@ -1115,11 +1115,11 @@ by the number of CPU cores allocated to b6.
 
 #### Arguments
 
-- `collection` of type `AnyAnyCollection`
+- `collection` of type `Collection[Any,Any]`
 - `function` of type [`Callable`](#callable)
 
 #### Returns
-`AnyAnyCollection`
+`Collection[Any,Any]`
 
 ### *b6.matches* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: bool</span>
 
@@ -1153,7 +1153,7 @@ representing the given function.
 
 #### Arguments
 
-- `collection` of type `AnyFeatureCollection`
+- `collection` of type `Collection[Any,Feature]`
 - `id` of type [`CollectionID`](#collectionid)
 - `function` of type [`Callable`](#callable)
 
@@ -1169,7 +1169,7 @@ point), then no changes will be applied.
 
 #### Arguments
 
-- `collection` of type `AnyChangeCollection`
+- `collection` of type `Collection[Any,Change]`
 
 #### Returns
 [`Change`](#change)
@@ -1238,7 +1238,7 @@ supported.
 #### Returns
 [`GeoJSON`](#geojson)
 
-### *b6.paths_to_reach* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: FeatureIDIntCollection</span>
+### *b6.paths_to_reach* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Collection[FeatureID,Int]</span>
 
 Return a collection of the paths used to reach all features matching the given query from the given origin via the given mode, within the given distance in meters.
 Keys are the paths used, values are the number of times that path was used during traversal.
@@ -1247,14 +1247,14 @@ See accessible-all for options values.
 #### Arguments
 
 - `origin` of type [`Feature`](#feature)
-- `options` of type `AnyAnyCollection`
+- `options` of type `Collection[Any,Any]`
 - `distance` of type `float64`
 - `query` of type [`Query`](#query)
 
 #### Returns
-`FeatureIDIntCollection`
+`Collection[FeatureID,Int]`
 
-### *b6.percentiles* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: AnyFloat64Collection</span>
+### *b6.percentiles* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Collection[Any,Float64]</span>
 
 Return a collection where values represent the perentile of the corresponding value in the given collection.
 The returned collection is ordered by percentile, with keys drawn from the
@@ -1262,12 +1262,12 @@ given collection.
 
 #### Arguments
 
-- `collection` of type `AnyFloat64Collection`
+- `collection` of type `Collection[Any,Float64]`
 
 #### Returns
-`AnyFloat64Collection`
+`Collection[Any,Float64]`
 
-### *b6.point_features* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: FeatureIDPhysicalFeatureCollection</span>
+### *b6.point_features* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Collection[FeatureID,PhysicalFeature]</span>
 
 Return a collection of the point features referenced by the given feature.
 Keys are ids of the respective value, values are point features. Area
@@ -1278,9 +1278,9 @@ features return the points referenced by their path features.
 - `f` of type [`Feature`](#feature)
 
 #### Returns
-`FeatureIDPhysicalFeatureCollection`
+`Collection[FeatureID,PhysicalFeature]`
 
-### *b6.point_paths* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: FeatureIDPhysicalFeatureCollection</span>
+### *b6.point_paths* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Collection[FeatureID,PhysicalFeature]</span>
 
 Return a collection of the path features referencing the given point.
 Keys are the ids of the respective paths.
@@ -1290,9 +1290,9 @@ Keys are the ids of the respective paths.
 - `id` of type [`Identifiable`](#identifiable)
 
 #### Returns
-`FeatureIDPhysicalFeatureCollection`
+`Collection[FeatureID,PhysicalFeature]`
 
-### *b6.points* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: IntGeometryCollection</span>
+### *b6.points* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Collection[Int,Geometry]</span>
 
 Return a collection of the points of the given geometry.
 Keys are ordered integers from 0, values are points.
@@ -1302,9 +1302,9 @@ Keys are ordered integers from 0, values are points.
 - `geometry` of type [`Geometry`](#geometry)
 
 #### Returns
-`IntGeometryCollection`
+`Collection[Int,Geometry]`
 
-### *b6.reachable* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: FeatureIDFeatureCollection</span>
+### *b6.reachable* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Collection[FeatureID,Feature]</span>
 
 Return the a collection of the features reachable from the given origin via the given mode, within the given distance in meters, that match the given query.
 See accessible-all for options values.
@@ -1313,12 +1313,12 @@ Deprecated. Use accessible-all.
 #### Arguments
 
 - `origin` of type [`Feature`](#feature)
-- `options` of type `AnyAnyCollection`
+- `options` of type `Collection[Any,Any]`
 - `distance` of type `float64`
 - `query` of type [`Query`](#query)
 
 #### Returns
-`FeatureIDFeatureCollection`
+`Collection[FeatureID,Feature]`
 
 ### *b6.reachable_area* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: float64</span>
 
@@ -1328,7 +1328,7 @@ See accessible-all for options values.
 #### Arguments
 
 - `origin` of type [`Feature`](#feature)
-- `options` of type `AnyAnyCollection`
+- `options` of type `Collection[Any,Any]`
 - `distance` of type `float64`
 
 #### Returns
@@ -1366,7 +1366,7 @@ values provide the key of the tag to be removed.
 
 #### Arguments
 
-- `collection` of type `FeatureIDStringCollection`
+- `collection` of type `Collection[FeatureID,String]`
 
 #### Returns
 [`Change`](#change)
@@ -1382,7 +1382,7 @@ Return a collection the center of the s2 cell with the given token.
 #### Returns
 [`Geometry`](#geometry)
 
-### *b6.s2_covering* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: IntStringCollection</span>
+### *b6.s2_covering* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Collection[Int,String]</span>
 
 Return a collection of of s2 cells tokens that cover the given area at the given level.
 
@@ -1393,9 +1393,9 @@ Return a collection of of s2 cells tokens that cover the given area at the given
 - `maxLevel` of type `int`
 
 #### Returns
-`IntStringCollection`
+`Collection[Int,String]`
 
-### *b6.s2_grid* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: IntStringCollection</span>
+### *b6.s2_grid* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Collection[Int,String]</span>
 
 Return a collection of points representing the centroids of s2 cells that cover the given area at the given level.
 
@@ -1405,9 +1405,9 @@ Return a collection of points representing the centroids of s2 cells that cover 
 - `level` of type `int`
 
 #### Returns
-`IntStringCollection`
+`Collection[Int,String]`
 
-### *b6.s2_points* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: StringGeometryCollection</span>
+### *b6.s2_points* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Collection[String,Geometry]</span>
 
 Return a collection of points representing the centroids of s2 cells that cover the given area between the given levels.
 
@@ -1418,7 +1418,7 @@ Return a collection of points representing the centroids of s2 cells that cover 
 - `maxLevel` of type `int`
 
 #### Returns
-`StringGeometryCollection`
+`Collection[String,Geometry]`
 
 ### *b6.s2_polygon* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Area</span>
 
@@ -1431,7 +1431,7 @@ Return the bounding area of the s2 cell with the given token.
 #### Returns
 [`Area`](#area)
 
-### *b6.sample_points* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: IntGeometryCollection</span>
+### *b6.sample_points* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Collection[Int,Geometry]</span>
 
 Return a collection of points along the given path, with the given distance in meters between them.
 Keys are ordered integers from 0, values are points.
@@ -1442,20 +1442,20 @@ Keys are ordered integers from 0, values are points.
 - `distanceMeters` of type `float64`
 
 #### Returns
-`IntGeometryCollection`
+`Collection[Int,Geometry]`
 
-### *b6.sample_points_along_paths* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: IntGeometryCollection</span>
+### *b6.sample_points_along_paths* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Collection[Int,Geometry]</span>
 
 Return a collection of points along the given paths, with the given distance in meters between them.
 Keys are the id of the respective path, values are points.
 
 #### Arguments
 
-- `paths` of type `FeatureIDGeometryCollection`
+- `paths` of type `Collection[FeatureID,Geometry]`
 - `distanceMeters` of type `float64`
 
 #### Returns
-`IntGeometryCollection`
+`Collection[Int,Geometry]`
 
 ### *b6.second* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Any</span>
 
@@ -1499,22 +1499,22 @@ Return the sum of all values in a given collection.
 
 #### Arguments
 
-- `collection` of type `AnyIntCollection`
+- `collection` of type `Collection[Any,Int]`
 
 #### Returns
 `int`
 
-### *b6.sum_by_key* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: AnyIntCollection</span>
+### *b6.sum_by_key* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Collection[Any,Int]</span>
 
 Return a collection of the result of summing the values of each item with the same key.
 Requires values to be integers.
 
 #### Arguments
 
-- `c` of type `AnyIntCollection`
+- `c` of type `Collection[Any,Int]`
 
 #### Returns
-`AnyIntCollection`
+`Collection[Any,Int]`
 
 ### *b6.tag* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Tag</span>
 
@@ -1540,30 +1540,19 @@ Return a query that will match features tagged with the given key and value.
 #### Returns
 [`Query`](#query)
 
-### *b6.take* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: AnyAnyCollection</span>
+### *b6.take* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Collection[Any,Any]</span>
 
 Return a collection with the first n entries of the given collection.
 
 #### Arguments
 
-- `collection` of type `AnyAnyCollection`
+- `collection` of type `Collection[Any,Any]`
 - `n` of type `int`
 
 #### Returns
-`AnyAnyCollection`
+`Collection[Any,Any]`
 
-### *b6.tile_ids* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: FeatureIDIntCollection</span>
-
-Deprecated
-
-#### Arguments
-
-- `feature` of type [`Feature`](#feature)
-
-#### Returns
-`FeatureIDIntCollection`
-
-### *b6.tile_ids_hex* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: FeatureIDStringCollection</span>
+### *b6.tile_ids* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Collection[FeatureID,Int]</span>
 
 Deprecated
 
@@ -1572,9 +1561,20 @@ Deprecated
 - `feature` of type [`Feature`](#feature)
 
 #### Returns
-`FeatureIDStringCollection`
+`Collection[FeatureID,Int]`
 
-### *b6.tile_paths* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: IntStringCollection</span>
+### *b6.tile_ids_hex* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Collection[FeatureID,String]</span>
+
+Deprecated
+
+#### Arguments
+
+- `feature` of type [`Feature`](#feature)
+
+#### Returns
+`Collection[FeatureID,String]`
+
+### *b6.tile_paths* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Collection[Int,String]</span>
 
 Return the URL paths for the tiles containing the given geometry at the given zoom level.
 
@@ -1584,7 +1584,7 @@ Return the URL paths for the tiles containing the given geometry at the given zo
 - `zoom` of type `int`
 
 #### Returns
-`IntStringCollection`
+`Collection[Int,String]`
 
 ### *b6.to_geojson* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: GeoJSON</span>
 
@@ -1601,7 +1601,7 @@ Return the URL paths for the tiles containing the given geometry at the given zo
 
 #### Arguments
 
-- `renderables` of type `AnyGeometryCollection`
+- `renderables` of type `Collection[Any,Geometry]`
 
 #### Returns
 [`GeoJSON`](#geojson)
@@ -1616,18 +1616,18 @@ Return the URL paths for the tiles containing the given geometry at the given zo
 #### Returns
 `string`
 
-### *b6.top* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: AnyAnyCollection</span>
+### *b6.top* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: Collection[Any,Any]</span>
 
 Return a collection with the n entries from the given collection with the greatest values.
 Requires the values of the given collection to be integers or floats.
 
 #### Arguments
 
-- `collection` of type `AnyAnyCollection`
+- `collection` of type `Collection[Any,Any]`
 - `n` of type `int`
 
 #### Returns
-`AnyAnyCollection`
+`Collection[Any,Any]`
 
 ### *b6.type_area* <span style={{fontSize: 12 +'px', fontWeight: 'normal'}}>:: QueryProto</span>
 
@@ -1744,7 +1744,7 @@ Deprecated. Use intersecting-cap.
 ### *CollectionFeature*
 
 #### Implements
-- [AnyAnyCollection](#anyanycollection)
+- [Collection[Any,Any]](#collection[any,any])
 - [Feature](#feature)
 
 ### *CollectionID*
