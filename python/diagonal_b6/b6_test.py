@@ -192,6 +192,13 @@ class B6Test(unittest.TestCase):
         for (_, feature) in filtered:
             self.assertNotEqual(feature.get_string("addr:postcode"), "")
 
+    def test_drop_invalid(self):
+        q = b6.accessible_all(b6.find(b6.keyed("#amenity")), b6.all(), duration=100, options={})
+        items = self.connection(q)
+        num_valid = self.connection(b6.count_valid_ids(q))
+        num_after_drop = self.connection(b6.drop_invalid(q).count())
+        self.assertEqual(num_after_drop, num_valid)
+
     def test_filter_with_implicit_function(self):
         filtered = self.connection(b6.find(b6.tagged("#amenity", "restaurant")).filter(b6.tagged("cuisine", "indian")).map(lambda f: b6.get_string(f, "name")))
         self.assertEqual(["Dishoom"], [name for (id, name) in filtered])
