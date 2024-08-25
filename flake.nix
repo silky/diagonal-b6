@@ -66,6 +66,10 @@
           ]
       );
 
+      get-function-docs = pkgs.writeShellScriptBin "get-function-docs" ''
+        ${b6-go}/bin/b6-api --docs --functions | ${pkgs.lib.getExe pkgs.jq} ".Functions[] | select(.Name == \"''$1\")"
+      '';
+
       b6-py = python.pkgs.buildPythonPackage
         (pythonProject.renderers.buildPythonPackage {
           inherit python;
@@ -101,6 +105,9 @@
       # Development shells for hacking
       devShells.default = pkgs.mkShell {
         packages = with pkgs; [
+          # Misc tools
+          get-function-docs
+
           # Running the Makefile tasks
           protobuf
           protoc-gen-go
