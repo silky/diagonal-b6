@@ -62,13 +62,19 @@
           [
             # For `make python`
             ps.grpcio-tools
+
+            # For hacking
             ps.jupyter
           ]
       );
 
-      get-function-docs = pkgs.writeShellScriptBin "get-function-docs" ''
-        ${b6-go}/bin/b6-api --docs --functions | ${pkgs.lib.getExe pkgs.jq} ".Functions[] | select(.Name == \"''$1\")"
-      '';
+      # Note: Disabled for now, as we are going to (mostly) prefer using the
+      # Makefile-built binaries, instead of the Nix-built binaries. This will
+      # be something to resolve at a later point.
+      #
+      # get-function-docs = pkgs.writeShellScriptBin "get-function-docs" ''
+      #   ${b6-go}/bin/b6-api --docs --functions | ${pkgs.lib.getExe pkgs.jq} ".Functions[] | select(.Name == \"''$1\")"
+      # '';
 
       b6-py = python.pkgs.buildPythonPackage
         (pythonProject.renderers.buildPythonPackage {
@@ -91,11 +97,6 @@
 
         # Must be added due to bug https://github.com/nix-community/gomod2nix/issues/120
         pwd = ./src/diagonal.works/b6;
-
-        # Optional flags.
-        # CGO_ENABLED = 0;
-        # flags = [ "-trimpath" ];
-        # ldflags = [ "-s" "-w" "-extldflags -static" ];
       };
 
       pkgs = import nixpkgs { inherit system; overlays = [ overlay ]; };
@@ -106,13 +107,14 @@
       devShells.default = pkgs.mkShell {
         packages = with pkgs; [
           # Misc tools
-          get-function-docs
+          # get-function-docs
 
           # Running the Makefile tasks
+          gdal
+          pkg-config
           protobuf
           protoc-gen-go
           protoc-gen-go-grpc
-          pkg-config gdal
 
           # Python hacking
           pythonEnv
